@@ -17,7 +17,6 @@ class App extends Component{
 
   handleChange = e =>{
     e.preventDefault()
-    console.log(e)
     this.setState({
       stressLevel: e.target.value
     })
