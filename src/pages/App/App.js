@@ -4,12 +4,14 @@ import { StressForm } from '../../components/StressForm/StressForm';
 import { Header } from '../../components/Header/Header';
 import { ActualStress } from '../../components/ActualStress/ActualStress';
 import { Undo } from '../../components/Undo/Undo';
-
+import {Submit} from '../../components/Submit/Submit'
+import { ThankYou } from '../../components/ThankYou/ThankYou';
 class App extends Component{
 
   state = {
     user: 'Kyle',
-    stressLevel: 0
+    stressLevel: 0,
+    submitted: false
   }
 
 
@@ -21,9 +23,15 @@ class App extends Component{
     })
   }
 
-  onClick = () => {
+  handleClick = () => {
     this.setState({
       stressLevel: 0
+    })
+  }
+
+  handleSubmit = () =>{
+    this.setState({
+      submitted: !this.state.submitted
     })
   }
 
@@ -31,17 +39,31 @@ class App extends Component{
 
     return(
       <div className="main">
-        <Header user={this.state.user} />
-        <ActualStress level={this.state.stressLevel} />
+        <Header 
+          user={this.state.user} 
+        />
+        <ActualStress 
+          submitted={this.state.submitted}
+          level={this.state.stressLevel} 
+        />
         <StressForm 
-        onChange={this.handleChange}
-        level={this.state.stressLevel}
+          onChange={this.handleChange}
+          level={this.state.stressLevel}
         />
         <Undo 
-        onClick={this.onClick} 
-        level={this.state.stressLevel}
+          onClick={this.handleClick} 
+          level={this.state.stressLevel}
+          submitted={this.state.submitted}
         />
-
+        <Submit 
+          submitted={this.state.submitted}
+          level={this.state.stressLevel}
+          onClick={this.handleSubmit}
+        />
+        <ThankYou 
+          submitted={this.state.submitted}
+          level={this.state.stressLevel}
+        />
       </div>
     
     )

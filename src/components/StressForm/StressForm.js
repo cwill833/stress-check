@@ -1,12 +1,15 @@
 import React from 'react'
 
  export const StressForm = ({onChange, level}) =>{
+
+    
+    const fix = event => onChange(event)
     
     return (
         level ?
         null 
         :
-        <form onChange={onChange}>
+        <form onChange={fix}>
             <select>
                 <option value="0">0</option>
                 <option value="1">1(no stress)</option>

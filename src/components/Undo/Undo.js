@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const Undo = ({onClick, level}) => {
+export const Undo = ({onClick, level, submitted}) => {
 
     return (
-        level ? 
+        level && !submitted? 
         <button onClick={onClick}>Was that not correct?</button>
         :
         null
