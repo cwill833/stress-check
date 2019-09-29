@@ -1,9 +1,12 @@
 import React from 'react'
 
- export const StressForm = ({onSubmit}) =>{
+ export const StressForm = ({onChange, level}) =>{
     
     return (
-        <form onSubmit={onSubmit}>
+        level ?
+        null 
+        :
+        <form onChange={onChange}>
             <select>
                 <option value="0">0</option>
                 <option value="1">1(no stress)</option>
@@ -17,7 +20,6 @@ import React from 'react'
                 <option value="9">9</option>
                 <option value="10">10(so stressed I can't function)</option>
             </select>
-            <button>submit</button>
         </form>
     )
 }
