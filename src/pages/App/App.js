@@ -3,19 +3,27 @@ import './App.css';
 import { StressForm } from '../../components/StressForm/StressForm';
 import { Header } from '../../components/Header/Header';
 import { ActualStress } from '../../components/ActualStress/ActualStress';
+import { Undo } from '../../components/Undo/Undo';
 
 class App extends Component{
 
   state = {
-    user: 'Chris',
+    user: 'Kyle',
     stressLevel: 0
   }
 
 
-  handleSubmit = (e) =>{
+  handleChange = e =>{
     e.preventDefault()
+    console.log(e)
     this.setState({
       stressLevel: e.target.value
+    })
+  }
+
+  onClick = () => {
+    this.setState({
+      stressLevel: 0
     })
   }
 
@@ -23,9 +31,17 @@ class App extends Component{
 
     return(
       <div className="main">
-        <ActualStress level={this.state.stressLevel} />
         <Header user={this.state.user} />
-        <StressForm onSubmit={this.handleSubmit}/>
+        <ActualStress level={this.state.stressLevel} />
+        <StressForm 
+        onChange={this.handleChange}
+        level={this.state.stressLevel}
+        />
+        <Undo 
+        onClick={this.onClick} 
+        level={this.state.stressLevel}
+        />
+
       </div>
     
     )
